@@ -10,7 +10,7 @@ const ArchivedComponentDetails = (props) => {
     };
 
     return (
-        <div className="card">
+        <div className="card mb-3">
             <div className="card-header">
                 {doc.title}
             </div>

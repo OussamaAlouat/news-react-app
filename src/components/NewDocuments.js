@@ -17,7 +17,7 @@ const NewDocuments = (props) => {
     return (
         <div>
             <div className="shadow-lg p-3 mb-3 bg-white rounded">
-                <h1 className="text-center">Wellcome to your news</h1>
+                <h1 className="text-center">Welcome to your news</h1>
             </div>
 
             <div className="row justify-content-center mb-3">

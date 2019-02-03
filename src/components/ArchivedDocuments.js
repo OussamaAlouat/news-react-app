@@ -1,5 +1,6 @@
 import React from 'react';
 import ArchivedComponentDetails from "./ArchivedComponentDetails";
+import {Link} from "react-router-dom";
 
 const ArchivedDocuments = (props) => {
 
@@ -16,7 +17,15 @@ const ArchivedDocuments = (props) => {
 
     return (
         <div>
-            {documentsList}
+            <div className="shadow-lg p-3 mb-3 bg-white rounded">
+                <h1 className="text-center">Welcome to your archive news</h1>
+            </div>
+
+            <div className="row justify-content-center mb-3">
+                <Link to="/" className="badge badge-primary">GO TO NEW NEWS</Link>
+            </div>
+
+            <div>{documentsList}</div>
         </div>
     );
 };

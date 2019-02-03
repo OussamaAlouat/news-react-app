@@ -11,7 +11,7 @@ const ComponentDetails = (props) => {
 
 
     return (
-        <div className="card mb-2">
+        <div className="card mb-3">
             <div className="card-header">
                 {doc.title}
             </div>
