@@ -1,6 +1,7 @@
 import React from 'react';
 import NewDocuments from "./NewDocuments";
 import documentsAPI from "../apis/documentsAPI";
+import moment from 'moment';
 
 class App extends React.Component {
 
@@ -13,7 +14,8 @@ class App extends React.Component {
 
     loadDocuments = async () => {
         const response = await documentsAPI.get('/documents');
-        this.setState({documents: response.data.data})
+        const shortedDocuments = this.sortDocumentsByDate(response.data.data);
+        this.setState({documents: shortedDocuments})
     };
 
     onDocumentArchive = async (item) => {
@@ -49,6 +51,10 @@ class App extends React.Component {
         }
 
 
+    };
+
+    sortDocumentsByDate = (documents) => {
+       return documents.sort((a,b) => new moment(a.date).format('YYYY-MM-DD HH:mm:ss') - new moment(b.date).format('YYYY-MM-DD HH:mm:ss'))
     };
 
     getNewDocuments = () => this.state.documents.filter((val) => val.archiveDate === null );
