@@ -7,14 +7,14 @@ const NewDocuments = (props) => {
         props.onDocumentArchive(term);
     };
 
-    const d = props.documents.map((doc) =>
+    const documentsList = props.documents.map((doc) =>
         <ComponentDetails document={doc} onDocumentArchive={onDocumentArchive}/>
     );
 
 
     return(
         <div>
-            {d}
+            {documentsList}
         </div>
     );
 };
