@@ -2,10 +2,11 @@ import React from 'react';
 import moment from 'moment';
 import {BrowserRouter, Route} from "react-router-dom";
 
+import documentsAPI from "../apis/documentsAPI";
 
 import NewDocuments from "./NewDocuments";
-import documentsAPI from "../apis/documentsAPI";
 import ArchivedDocuments from "./ArchivedDocuments";
+import AddNewDocument from "./AddNewDocument";
 
 class App extends React.Component {
 
@@ -61,11 +62,10 @@ class App extends React.Component {
     };
 
     getNewDocuments = () => {
-        const newDocuments =this.state.documents.filter((val) => val.archiveDate === null);
+        const newDocuments = this.state.documents.filter((val) => val.archiveDate === null);
         const orderedDocuments = this.sortDocumentsByDate(newDocuments);
         return orderedDocuments;
     };
-
 
 
     getArchiveDocuments = () => {
@@ -118,6 +118,15 @@ class App extends React.Component {
                                 {...props}
                                 documents={this.getArchiveDocuments()}
                                 onDocumentRemove={this.onDocumentRemove}
+                            />}
+                    />
+
+                    <Route
+                        path="/new"
+                        exact
+                        render={props =>
+                            <AddNewDocument
+                                {...props}
                             />}
                     />
 
