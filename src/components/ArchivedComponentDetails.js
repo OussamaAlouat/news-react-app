@@ -21,13 +21,16 @@ const ArchivedComponentDetails = (props) => {
             </div>
             <div className="card-footer text-muted">
                 <div className="row">
-                    <div className="col-4">
+                    <div className="col-3">
                         Author: {doc.author}
                     </div>
-                    <div className="col-4">
+                    <div className="col-3">
                         Date: {moment(doc.date).format('YYYY-MM-DD HH:mm:SS')}
                     </div>
                     <div className="col-4">
+                        Archive Date: {moment(doc.archiveDate).format('YYYY-MM-DD HH:mm:SS')}
+                    </div>
+                    <div className="col-2">
                         <button type="button" className="btn btn-secondary" onClick={onDocumentRemove}>Remove</button>
                     </div>
                 </div>
