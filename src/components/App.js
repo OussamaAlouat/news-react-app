@@ -18,8 +18,7 @@ class App extends React.Component {
 
     loadDocuments = async () => {
         const response = await documentsAPI.get('/documents');
-        const shortedDocuments = this.sortDocumentsByDate(response.data.data);
-        this.setState({documents: shortedDocuments})
+        this.setState({documents: response.data.data})
     };
 
     onDocumentArchive = async (item) => {
@@ -61,15 +60,21 @@ class App extends React.Component {
         return documents.sort((a, b) => new moment(a.date).format('YYYY-MM-DD HH:mm:ss') - new moment(b.date).format('YYYY-MM-DD HH:mm:ss'))
     };
 
-    getNewDocuments = () => this.state.documents.filter((val) => val.archiveDate === null);
+    getNewDocuments = () => {
+        const newDocuments =this.state.documents.filter((val) => val.archiveDate === null);
+        const orderedDocuments = this.sortDocumentsByDate(newDocuments);
+        return orderedDocuments;
+    };
+
+
 
     getArchiveDocuments = () => {
-        const archived = this.state.documents.filter((val) => val.archiveDate !== null)
-        const ordered = this.shortByArchiveDate(archived);
+        const archived = this.state.documents.filter((val) => val.archiveDate !== null);
+        const ordered = this.sortByArchiveDate(archived);
         return ordered;
     };
 
-    shortByArchiveDate = (documents) => {
+    sortByArchiveDate = (documents) => {
         return documents.sort((a, b) => new moment(a.archiveDate).format('YYYY-MM-DD HH:mm:ss') - new moment(b.archiveDate).format('YYYY-MM-DD HH:mm:ss'))
     };
 
