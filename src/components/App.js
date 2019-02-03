@@ -78,6 +78,28 @@ class App extends React.Component {
         return documents.sort((a, b) => new moment(a.archiveDate).format('YYYY-MM-DD HH:mm:ss') - new moment(b.archiveDate).format('YYYY-MM-DD HH:mm:ss'))
     };
 
+    onFormSubmit = async (item) => {
+        const {author, content, description, title} = item;
+        const date = new Date();
+        const archiveDate = null;
+        const payload = {
+            author,
+            title,
+            description,
+            content,
+            date,
+            archiveDate
+        };
+        const response = await  documentsAPI.post('/document',payload);
+
+        if (response.data.message.toUpperCase()  === 'DOCUMENT CREATED CORRECTLY' && response.status === 201 ){
+            this.loadDocuments();
+        } else {
+            console.log('Something wrong')
+        }
+
+    };
+
     onDocumentRemove = async (item) => {
 
         const response = await documentsAPI.delete('/document', {
@@ -127,6 +149,7 @@ class App extends React.Component {
                         render={props =>
                             <AddNewDocument
                                 {...props}
+                                onFormSubmit={this.onFormSubmit}
                             />}
                     />
 
