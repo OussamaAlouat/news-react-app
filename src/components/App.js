@@ -20,7 +20,38 @@ class App extends React.Component {
     };
 
     onDocumentArchive = async (item) => {
-        console.log('Im the phaher ', item)
+        const {title, author, content, date, description} = item;
+
+        const paylaod = {
+            title,
+            author,
+            content,
+            date,
+            description,
+            archiveDate: new Date(),
+            id: item._id
+        };
+
+        const response = await documentsAPI.put('/document', paylaod);
+
+        if (response.data.message.toUpperCase() === 'DOCUMENT UPDATED') {
+            const actualDocuments = this.state.documents;
+
+            const updatedDocuments = actualDocuments.map((val) => {
+                    if (val._id === item._id)
+                        val.archiveDate = paylaod.archiveDate;
+                    return val;
+                }
+            );
+
+            this.setState({
+                documents: updatedDocuments
+            });
+        } else {
+            console.log('There are some error');
+        }
+
+
     };
 
     render() {
