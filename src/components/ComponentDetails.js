@@ -4,6 +4,11 @@ const ComponentDetails = (props) => {
 
     const doc = props.document;
 
+    const onDocumentArchive = () => {
+        props.onDocumentArchive(doc);
+    };
+
+
     return (
         <div className="card">
             <div className="card-header">
@@ -23,7 +28,7 @@ const ComponentDetails = (props) => {
                         Date: {doc.date}
                     </div>
                     <div className="col-4">
-                        <button type="button" className="btn btn-secondary">Archive</button>
+                        <button type="button" className="btn btn-secondary" onClick={onDocumentArchive}>Archive</button>
                     </div>
                 </div>
             </div>
