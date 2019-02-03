@@ -29,7 +29,7 @@ class AddNewDocument extends React.Component {
                     </div>
 
                     <div className="col-2 justify-content-center mb-3">
-                        <Link to="/" className="badge badge-primary">GO TO ARCHIVE NEWS</Link>
+                        <Link to="/archived" className="badge badge-primary">GO TO ARCHIVE NEWS</Link>
                     </div>
                 </div>
 
