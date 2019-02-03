@@ -1,4 +1,5 @@
 import React from 'react';
+import  moment from 'moment';
 
 const ComponentDetails = (props) => {
 
@@ -25,7 +26,7 @@ const ComponentDetails = (props) => {
                         Author: {doc.author}
                     </div>
                     <div className="col-4">
-                        Date: {doc.date}
+                        Date: {moment(doc.date).format('YYYY-MM-DD HH:mm:SS')}
                     </div>
                     <div className="col-4">
                         <button type="button" className="btn btn-secondary" onClick={onDocumentArchive}>Archive</button>
