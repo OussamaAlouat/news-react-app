@@ -1,9 +1,13 @@
 import React from 'react';
-import  moment from 'moment';
+import moment from 'moment';
 
 const ArchivedComponentDetails = (props) => {
 
     const doc = props.document;
+
+    const onDocumentRemove = () => {
+        props.onDocumentRemove(doc);
+    };
 
     return (
         <div className="card">
@@ -24,7 +28,7 @@ const ArchivedComponentDetails = (props) => {
                         Date: {moment(doc.date).format('YYYY-MM-DD HH:mm:SS')}
                     </div>
                     <div className="col-4">
-                        <button type="button" className="btn btn-secondary">Remove</button>
+                        <button type="button" className="btn btn-secondary" onClick={onDocumentRemove}>Remove</button>
                     </div>
                 </div>
             </div>
