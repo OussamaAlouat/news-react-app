@@ -16,12 +16,12 @@ const NewDocuments = (props) => {
 
     return (
         <div>
-            <div className="shadow-lg p-3 mb-5 bg-white rounded">
+            <div className="shadow-lg p-3 mb-3 bg-white rounded">
                 <h1 className="text-center">Wellcome to your news</h1>
             </div>
 
-            <div className="row justify-content-center mb-1">
-                <button>GO TO ARCHIVE</button>
+            <div className="row justify-content-center mb-3">
+                <Link to="/archived" className="badge badge-primary">GO TO ARCHIVE</Link>
             </div>
 
             {documentsList}
