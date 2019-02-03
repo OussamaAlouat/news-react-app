@@ -1,7 +1,11 @@
 import React from 'react';
+import moment from 'moment';
+import {BrowserRouter, Route} from "react-router-dom";
+
+
 import NewDocuments from "./NewDocuments";
 import documentsAPI from "../apis/documentsAPI";
-import moment from 'moment';
+import ArchivedDocuments from "./ArchivedDocuments";
 
 class App extends React.Component {
 
@@ -54,10 +58,10 @@ class App extends React.Component {
     };
 
     sortDocumentsByDate = (documents) => {
-       return documents.sort((a,b) => new moment(a.date).format('YYYY-MM-DD HH:mm:ss') - new moment(b.date).format('YYYY-MM-DD HH:mm:ss'))
+        return documents.sort((a, b) => new moment(a.date).format('YYYY-MM-DD HH:mm:ss') - new moment(b.date).format('YYYY-MM-DD HH:mm:ss'))
     };
 
-    getNewDocuments = () => this.state.documents.filter((val) => val.archiveDate === null );
+    getNewDocuments = () => this.state.documents.filter((val) => val.archiveDate === null);
 
     render() {
 
@@ -65,9 +69,20 @@ class App extends React.Component {
             return <div>Loading</div>
 
         return (
-            <div className="container flex">
-                <NewDocuments documents={this.getNewDocuments()} onDocumentArchive={this.onDocumentArchive}/>
-            </div>
+            <BrowserRouter>
+
+                <div className="container flex">
+                    <Route
+                        path="/"
+                        exact
+                        render={props =>
+                            <NewDocuments
+                                {...props}
+                                documents={this.getNewDocuments()}
+                                onDocumentArchive={this.onDocumentArchive}/>}
+                    />
+                </div>
+            </BrowserRouter>
         );
     }
 }
