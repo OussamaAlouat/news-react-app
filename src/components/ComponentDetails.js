@@ -16,7 +16,7 @@ const ComponentDetails = (props) => {
             </div>
             <div className="card-body">
                 <h6 className="card-title">{doc.description}</h6>
-                <p class="card-text">{doc.content}</p>
+                <p className="card-text">{doc.content}</p>
 
             </div>
             <div className="card-footer text-muted">
