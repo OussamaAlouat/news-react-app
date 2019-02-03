@@ -21,10 +21,15 @@ const ArchivedDocuments = (props) => {
                 <h1 className="text-center">Welcome to your archive news</h1>
             </div>
 
-            <div className="row justify-content-center mb-3">
-                <Link to="/" className="badge badge-primary">GO TO NEW NEWS</Link>
-            </div>
+            <div className="row justify-content-center">
+                <div className="col-2 justify-content-center mb-3 ">
+                    <Link to="/" className="badge badge-primary">GO TO NEW NEWS</Link>
+                </div>
 
+                <div className="col-2 justify-content-center mb-3">
+                    <Link to="/new" className="badge badge-primary">GO TO ADD NEWS</Link>
+                </div>
+            </div>
             <div>{documentsList}</div>
         </div>
     );
