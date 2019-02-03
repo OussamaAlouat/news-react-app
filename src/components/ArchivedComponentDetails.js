@@ -31,7 +31,7 @@ const ArchivedComponentDetails = (props) => {
                         Archive Date: {moment(doc.archiveDate).format('YYYY-MM-DD HH:mm:SS')}
                     </div>
                     <div className="col-2">
-                        <button type="button" className="btn btn-secondary" onClick={onDocumentRemove}>Remove</button>
+                        <button type="button" className="btn btn-danger" onClick={onDocumentRemove}>Remove</button>
                     </div>
                 </div>
             </div>
