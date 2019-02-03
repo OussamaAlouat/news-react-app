@@ -3,6 +3,7 @@ import React from 'react';
 const ComponentDetails = (props) => {
 
     const doc = props.document;
+
     return (
         <div className="card">
             <div className="card-header">
@@ -14,10 +15,20 @@ const ComponentDetails = (props) => {
 
             </div>
             <div className="card-footer text-muted">
-                <p>{doc.author}</p>
-                <p> {doc.date} </p>
+                <div className="row">
+                    <div className="col-4">
+                        Author: {doc.author}
+                    </div>
+                    <div className="col-4">
+                        Date: {doc.date}
+                    </div>
+                    <div className="col-4">
+                        <button type="button" className="btn btn-secondary">Archive</button>
+                    </div>
+                </div>
             </div>
-        </div>)
+        </div>
+    );
 };
 
 export default ComponentDetails;
