@@ -1,12 +1,11 @@
 import React from 'react';
+import ArchivedComponentDetails from "./ArchivedComponentDetails";
 
 const ArchivedDocuments = (props) => {
 
-    const documentsList = props.documents.map((val) => <li>{val.title}</li>)
+    const documentsList = props.documents.map((doc) => <ArchivedComponentDetails key={doc._id} document={doc}/>)
 
-
-
-    return(
+    return (
         <div>
             {documentsList}
         </div>
