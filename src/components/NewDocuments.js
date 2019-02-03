@@ -8,7 +8,7 @@ const NewDocuments = (props) => {
     };
 
     const documentsList = props.documents.map((doc) =>
-        <ComponentDetails document={doc} onDocumentArchive={onDocumentArchive}/>
+        <ComponentDetails key={doc._id} document={doc} onDocumentArchive={onDocumentArchive}/>
     );
 
 
