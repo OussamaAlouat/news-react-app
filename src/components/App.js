@@ -14,9 +14,6 @@ class App extends React.Component {
     loadDocuments = async () => {
         const response = await documentsAPI.get('/documents');
         this.setState({documents: response.data.data})
-
-
-        console.log(response.data.data)
     };
 
     onDocumentArchive = async (item) => {
