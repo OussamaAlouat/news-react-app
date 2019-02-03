@@ -19,6 +19,10 @@ class App extends React.Component {
         console.log(response.data.data)
     };
 
+    onDocumentArchive = async (item) => {
+        console.log('Im the phaher ', item)
+    };
+
     render() {
 
         if (this.state.documents.length === 0)
@@ -26,7 +30,7 @@ class App extends React.Component {
 
         return (
             <div className="container flex">
-                <NewDocuments documents={this.state.documents}/>
+                <NewDocuments documents={this.state.documents} onDocumentArchive={this.onDocumentArchive}/>
             </div>
         );
     }
