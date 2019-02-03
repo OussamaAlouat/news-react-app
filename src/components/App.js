@@ -73,6 +73,21 @@ class App extends React.Component {
         return documents.sort((a, b) => new moment(a.archiveDate).format('YYYY-MM-DD HH:mm:ss') - new moment(b.archiveDate).format('YYYY-MM-DD HH:mm:ss'))
     };
 
+    onDocumentRemove = async (item) => {
+
+        const response = await documentsAPI.delete('/document', {
+            params: {id: item._id}
+        });
+
+        if (response.data.response.message.toUpperCase() === 'DOCUMENT WAS DELETE') {
+            const documents = this.state.documents;
+            const filteredDocuments = documents.filter((val) => val._id !== item._id);
+            this.setState({documents: filteredDocuments});
+        } else {
+            console.log('Something wrong')
+        }
+    };
+
     render() {
 
         if (this.state.documents.length === 0)
@@ -98,6 +113,7 @@ class App extends React.Component {
                             <ArchivedDocuments
                                 {...props}
                                 documents={this.getArchiveDocuments()}
+                                onDocumentRemove={this.onDocumentRemove}
                             />}
                     />
 
