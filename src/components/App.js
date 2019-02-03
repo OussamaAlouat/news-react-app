@@ -63,7 +63,15 @@ class App extends React.Component {
 
     getNewDocuments = () => this.state.documents.filter((val) => val.archiveDate === null);
 
-    getArchiveDocuments = () => this.state.documents.filter((val) => val.archiveDate !== null);
+    getArchiveDocuments = () => {
+        const archived = this.state.documents.filter((val) => val.archiveDate !== null)
+        const ordered = this.shortByArchiveDate(archived);
+        return ordered;
+    };
+
+    shortByArchiveDate = (documents) => {
+        return documents.sort((a, b) => new moment(a.archiveDate).format('YYYY-MM-DD HH:mm:ss') - new moment(b.archiveDate).format('YYYY-MM-DD HH:mm:ss'))
+    };
 
     render() {
 
