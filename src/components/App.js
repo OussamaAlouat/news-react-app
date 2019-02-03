@@ -54,6 +54,8 @@ class App extends React.Component {
 
     };
 
+    getNewDocuments = () => this.state.documents.filter((val) => val.archiveDate === null );
+
     render() {
 
         if (this.state.documents.length === 0)
@@ -61,7 +63,7 @@ class App extends React.Component {
 
         return (
             <div className="container flex">
-                <NewDocuments documents={this.state.documents} onDocumentArchive={this.onDocumentArchive}/>
+                <NewDocuments documents={this.getNewDocuments()} onDocumentArchive={this.onDocumentArchive}/>
             </div>
         );
     }
