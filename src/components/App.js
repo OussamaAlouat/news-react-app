@@ -25,7 +25,7 @@ class App extends React.Component {
             return <div>Loading</div>
 
         return (
-            <div>
+            <div className="container flex">
                 <NewDocuments documents={this.state.documents}/>
             </div>
         );
