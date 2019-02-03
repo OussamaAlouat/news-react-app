@@ -63,6 +63,8 @@ class App extends React.Component {
 
     getNewDocuments = () => this.state.documents.filter((val) => val.archiveDate === null);
 
+    getArchiveDocuments = () => this.state.documents.filter((val) => val.archiveDate !== null);
+
     render() {
 
         if (this.state.documents.length === 0)
@@ -81,6 +83,16 @@ class App extends React.Component {
                                 documents={this.getNewDocuments()}
                                 onDocumentArchive={this.onDocumentArchive}/>}
                     />
+                    <Route
+                        path="/archived"
+                        exact
+                        render={props =>
+                            <ArchivedDocuments
+                                {...props}
+                                documents={this.getArchiveDocuments()}
+                            />}
+                    />
+
                 </div>
             </BrowserRouter>
         );
