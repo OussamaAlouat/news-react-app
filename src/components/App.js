@@ -82,13 +82,15 @@ class App extends React.Component {
         const {author, content, description, title} = item;
         const date = new Date();
         const archiveDate = null;
+        const isArchive=false;
         const payload = {
             author,
             title,
             description,
             content,
             date,
-            archiveDate
+            archiveDate,
+            isArchive
         };
         const response = await  documentsAPI.post('/document',payload);
 
