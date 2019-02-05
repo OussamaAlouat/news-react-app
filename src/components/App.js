@@ -32,7 +32,8 @@ class App extends React.Component {
             date,
             description,
             archiveDate: new Date(),
-            id: item._id
+            id: item._id,
+            isArchived: true
         };
 
         const response = await documentsAPI.put('/document', paylaod);
@@ -82,13 +83,15 @@ class App extends React.Component {
         const {author, content, description, title} = item;
         const date = new Date();
         const archiveDate = null;
+        const isArchived=false;
         const payload = {
             author,
             title,
             description,
             content,
             date,
-            archiveDate
+            archiveDate,
+            isArchived
         };
         const response = await  documentsAPI.post('/document',payload);
 
