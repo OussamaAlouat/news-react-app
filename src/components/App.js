@@ -32,7 +32,8 @@ class App extends React.Component {
             date,
             description,
             archiveDate: new Date(),
-            id: item._id
+            id: item._id,
+            isArchived: true
         };
 
         const response = await documentsAPI.put('/document', paylaod);
