@@ -10,7 +10,11 @@ import AddNewDocument from "./AddNewDocument";
 
 class App extends React.Component {
 
-    state = {documents: []};
+    // state = {documents: []};
+    state = {
+        newDocuments: [],
+        archivedDocuments: []
+    };
 
 
     componentDidMount() {
@@ -18,8 +22,13 @@ class App extends React.Component {
     }
 
     loadDocuments = async () => {
-        const response = await documentsAPI.get('/documents');
-        this.setState({documents: response.data.data})
+        const responseForNewDocument = await documentsAPI.get('documents?state=new');
+        const responseForArchivedDocument = await documentsAPI.get('documents?state=archived');
+
+        this.setState({
+            newDocuments: responseForNewDocument.data.data,
+            archivedDocuments: responseForArchivedDocument.data.data
+        });
     };
 
     onDocumentArchive = async (item) => {
@@ -63,15 +72,13 @@ class App extends React.Component {
     };
 
     getNewDocuments = () => {
-        const newDocuments = this.state.documents.filter((val) => val.archiveDate === null);
-        const orderedDocuments = this.sortDocumentsByDate(newDocuments);
+        const orderedDocuments = this.sortDocumentsByDate(this.state.newDocuments);
         return orderedDocuments;
     };
 
 
     getArchiveDocuments = () => {
-        const archived = this.state.documents.filter((val) => val.archiveDate !== null);
-        const ordered = this.sortByArchiveDate(archived);
+        const ordered = this.sortByArchiveDate(this.state.archivedDocuments);
         return ordered;
     };
 
@@ -83,7 +90,7 @@ class App extends React.Component {
         const {author, content, description, title} = item;
         const date = new Date();
         const archiveDate = null;
-        const isArchived=false;
+        const isArchived = false;
         const payload = {
             author,
             title,
@@ -93,9 +100,9 @@ class App extends React.Component {
             archiveDate,
             isArchived
         };
-        const response = await  documentsAPI.post('/document',payload);
+        const response = await documentsAPI.post('/document', payload);
 
-        if (response.data.message.toUpperCase()  === 'DOCUMENT CREATED CORRECTLY' && response.status === 201 ){
+        if (response.data.message.toUpperCase() === 'DOCUMENT CREATED CORRECTLY' && response.status === 201) {
             this.loadDocuments();
         } else {
             console.log('Something wrong')
@@ -120,8 +127,8 @@ class App extends React.Component {
 
     render() {
 
-        if (this.state.documents.length === 0)
-            return <div>Loading</div>
+        if (this.state.newDocuments.length === 0 || this.state.archivedDocuments.length === 0)
+            return <div>Loading</div>;
 
         return (
             <BrowserRouter>
