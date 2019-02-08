@@ -10,7 +10,6 @@ import AddNewDocument from "./AddNewDocument";
 
 class App extends React.Component {
 
-    // state = {documents: []};
     state = {
         newDocuments: [],
         archivedDocuments: []
@@ -117,9 +116,10 @@ class App extends React.Component {
         });
 
         if (response.data.response.message.toUpperCase() === 'DOCUMENT WAS DELETE') {
-            const documents = this.state.documents;
+            const documents = this.state.archivedDocuments;
             const filteredDocuments = documents.filter((val) => val._id !== item._id);
-            this.setState({documents: filteredDocuments});
+
+            this.setState({archivedDocuments: filteredDocuments});
         } else {
             console.log('Something wrong')
         }
