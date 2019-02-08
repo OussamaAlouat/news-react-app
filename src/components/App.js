@@ -47,18 +47,8 @@ class App extends React.Component {
         const response = await documentsAPI.put('/document', paylaod);
 
         if (response.data.message.toUpperCase() === 'DOCUMENT UPDATED') {
-            const actualDocuments = this.state.documents;
+           this.loadDocuments();
 
-            const updatedDocuments = actualDocuments.map((val) => {
-                    if (val._id === item._id)
-                        val.archiveDate = paylaod.archiveDate;
-                    return val;
-                }
-            );
-
-            this.setState({
-                documents: updatedDocuments
-            });
         } else {
             console.log('There are some error');
         }
