@@ -1,7 +1,12 @@
-###Summary
+# NEWS APP
+
+This application need's their server to run well, so make sure that you have this server and that it is running. You will found the server on my gitHub, it name is: news-backend.
+
+
+### Summary
 You need to install all the dependencies to run the application using:
 
-###npm install
+### `npm install`
 
 The dependencies are: 
  - axios
